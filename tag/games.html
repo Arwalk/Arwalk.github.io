@@ -1,76 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Arwalk's blog</title>
-	<meta name="description" content="">
-	<meta name="author" content="Arwalk">
+        <title>Arwalk's blog <small>games</small></title>
+        <!-- Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=The+Girl+Next+Door' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Marcellus' rel='stylesheet' type='text/css'>
+        
+        <!-- CSS -->
+        <link rel="stylesheet" href="../theme/css/main.css" type="text/css" />
+        <link rel="stylesheet" href="../theme/css/pygments.css" type="text/css" />
+        <link rel="stylesheet" href="../theme/css/font-awesome.css" type="text/css" />
+        <meta charset="utf-8" />
+      
 
-	<!-- HTML5 shim, for IE6-8 support of HTML elements -->
-	<!--[if lt IE 9]>
-		<script src="../theme/html5.js"></script>
-	<![endif]-->
+        <!-- Javascript-->
+        <script async src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+        <script async type="text/javascript"> 
+        $(function() {
+            function invisibleMenu() {
+                var now = 0;
+                var pixels = 300;
+                var opacity = -1;
 
-	<!-- Styles -->
-	<link href="../theme/bootstrap.min.css" rel="stylesheet">
-	<link href="../theme/local.css" rel="stylesheet">
-	<link href="../theme/pygments.css" rel="stylesheet">
-
-	<!-- Feeds -->
-
-
-
-
+                var move = function() {
+                    now = $(window).scrollTop();
+                    if (now > pixels && opacity !== 0)
+                        opacity = 0;
+                    else if (now < pixels){
+                        // Depends on the position not if scrolls down or up
+                        opacity = (1 - now/pixels);
+                    }
+                    $("div.navigation").css({"opacity": opacity});
+                }
+                $(window).scroll(move);
+                move();
+            }
+            invisibleMenu();
+          });
+          </script> 
 </head>
-<body>
-	<div class="topbar">
-	  <div class="topbar-inner">
-		<div class="container-fluid">
-		  <a class="brand" href="../">Arwalk's blog</a>
-			<ul class="nav">
-					<li ><a href="../category/misc.html">misc</a></li>
-					<li ><a href="../category/vidya.html">vidya</a></li>
-			</ul>
-			<p class="pull-right"><a href="../archives.html">[archives]</a> <a href="../tags.html">[tags]</a></p>
-		</div>
-	  </div>
-	</div>
 
-	<div class="container-fluid">
-	  <div class="sidebar">
-		<div class="well">
-			<h3>Blogroll</h3>
-			<ul>
-				<li><a href="http://getpelican.com/">Pelican</a></li>
-				<li><a href="http://python.org/">Python.org</a></li>
-				<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-			</ul>
-			<div class="social">
-			<h3>Social</h3>
-			<ul>
-			</ul>
-			</div>
-		</div>
-	  </div>
-	  <div class="content">
-<div class="page-header"><h1>Arwalk's blog <small>games</small></h1></div>
-<div class='article'>
-	<h2>Quakeworld: Advanced Aerowalk Strategy</h2>
-	<div class="well small">Permalink: <a class="more" href="../quakeworld-by-inertia.html">2019-08-23 00:22:00+02:00</a>
-by <a class="url fn" href="../author/inertia.html">inertia </a>
- in <a href="../category/vidya.html">vidya</a>
-tags: <a href="../tag/vidya.html">vidya</a> <a href="../tag/games.html">games</a> <a href="../tag/quake.html">quake</a> <a href="../tag/quakeworld.html">quakeworld</a> <a href="../tag/aerowalk.html">aerowalk</a> </div>
-	<div class="summary">Even dinosaurs have a right to be remembered. <a class="btn primary xsmall" href="../quakeworld-by-inertia.html">more…</a>
-	</div>
-</div>	
+<body id="index" class="home">
+     <div class="navigation">
+        <ol class="nav">
+          <li><a href="..">Blog</a> </li>
+          <li><a href="../archives.html">Archive</a></li>
+          <li class="current"><a href="../tags.html">Tags</a> </li>
+          <li><a href="../">RSS</a> </li>
+        </ol>
+      </div>
+        <header id="banner" class="body">
+                <div class="banner"><a href="..">Arwalk's blog <strong></strong></a></div>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+        </ul></nav><!-- /#menu -->
+        <div class="box">
+        
+<section id="content">
+<div class="posts">
+    <ol id="post-list">
+        
+        <li>
+            <article class="archive">
+                <header> 
+                    <h1 class="archive-entry-title">
+                        <a href="../quakeworld-by-inertia.html" rel="bookmark" title="Permalink to Quakeworld: Advanced Aerowalk Strategy">Quakeworld: Advanced Aerowalk Strategy</a>
+                    </h1> 
+                </header>
+                <footer class="post-info">
+                    <abbr>
+                      Fri 23 August 2019 
+                         By <a class="url fn" href="../author/inertia.html">inertia</a>
+  
+                    </abbr>
+                    <div class="entry-summary"> Even dinosaurs have a right to be remembered.
+                    <a href="../quakeworld-by-inertia.html">read more</a></div>
+                </footer><!-- /.post-info -->
+                <!-- /.entry-content -->
+            </article>
+        </li>
+    </ol><!-- /#posts-list -->
+</div>
+</section><!-- /#content -->
+            <hr/>
+            <footer id="contentinfo" class="footer">
+                <div>
+                    <a href="..">Arwalk</a> (2012)
+                </div>
+                <div>
+                    This work is licensed under <a rel="license" href="http://opensource.org/licenses/bsd-3-clause">3 clause BSD</a>. Source code available on <a rel="source code" href="https://github.com/slok/blog">Github</a>
+                </div>
+                <div>
+                    powered by <a href="http://getpelican.com/">Pelican</a>
+                    and <a href="http://python.org">Python</a>. 
+                    <a href="http://github.com/slok/iris">Theme</a> by <a href="http://xlarrakoetxea.org">Xabier Larrakoetxea</a> based on <a href="http://flask.pocoo.org/">Flask</a> theme
+                </div>
+                <div>
+                    Social icons (font awesome) by <a href="http://fortawesome.github.com/Font-Awesome/"> fort awesome</a>.
+                    <a href="http://www.google.com/webfonts/specimen/The+Girl+Next+Door">Title</a>, <a href="http://www.google.com/webfonts/specimen/Marcellus">headers</a> and <a href="http://www.google.com/webfonts/specimen/Inconsolata">source code</a> fonts by google fonts
+                </div>
+                <div class="social">
+                </div>
+            </footer><!-- /#contentinfo -->
+        </div>
+        <!--Add statistycs-->
 
-
-		<footer>
-		  <p>Powered by <a href="http://getpelican.com/">Pelican</a>. Theme based on <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>.</p>
-		  <p>&copy; Arwalk</p>
-		</footer>
-	  </div>
-
-	</div>
 </body>
 </html>
