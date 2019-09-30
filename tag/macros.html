@@ -1,375 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-        <meta charset="utf-8" />
-        <title>Arwalk's blog - macros</title>
-        <link rel="stylesheet" href="../theme/css/main.css" />
+  <head>
+    <meta charset="utf-8" />
+    <title>Arwalk's blog — Articles avec le mot clé « macros »</title>
+    <link rel="stylesheet" type="text/css" href="../theme/css/skeleton.css" />
+    <link rel="stylesheet" type="text/css" href="../theme/css/main.css" />
+    <link rel="shortcut icon" type="text/css" href="../favicon.ico" />
+    <link rel="alternate" type="application/atom+xml"
+                           title="Arwalk's blog — Flux Atom"
+                           href="../" /> 
+    <!--[if lte IE 8]><script src="../theme/js/html5shiv.js"></script><![endif]-->
+    <meta name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=no" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="page-head">
+        <h1>
+          <a href="../index.html">Arwalk's blog</a>
+        </h1>
+      </header>
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-</head>
+      <div class="page-content">
+    <section class="content">
+      <h1 id="page-title">Articles avec le mot clé « macros » :</h1>
+     
+        
+      <article class="post">
+        <header class="post-header">
+          <time datetime="2019-09-30T07:37:00+02:00" pubdate="pubdate">
+            Mon 30 September 2019
+          </time>
+          <h1>
+            <a rel="bookmark"
+               href="../c11-tying-data-to-enums.html"
+               title="Lien permanent vers «C11: tying data to enums.»">
+               C11: tying data to enums.
+            </a>
+          </h1>
+          <div class="meta">
+              Dans «<a href="../category/programming.html">programming</a>» 
+              par <a href="../author/arwalk.html">Arwalk</a>
+          </div>
+        </header>
+        <div class="post-content"> 
+          X macros are useful, but don't expose your implementation.
+        </div>
+        <footer class="post-footer">
+          <a class="readmore" href="../c11-tying-data-to-enums.html">Lire la suite...</a>
+        </footer>
+      </article>
+      <nav id="pagination">   <!-- <span id="first_page" class="a inactive">&#60;&#60;</span>
+        <span id="first_page" class="a inactive">&#60;</span> -->
+        <span class="a active">1</span>
+   <!-- <span id="next_page" class="a inactive">&#62;</span>
+        <span id="next_page" class="a inactive">&#62;&#62;</span> -->
+</nav>    </section>
+      </div>
+    <aside class="page-sidebar">
+      <nav class="widget">
+      <h3>Site</h3>
+        <ul>
+          <li><a href="..">Accueil</a></li>
+          <li><a href="../archives.html">Archives</a></li>
+          <li><a href="../tags.html">Mots-clés</a></li>
+        </ul>
+      </nav>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="../">Arwalk's blog </a></h1>
-                <nav><ul>
-                    <li><a href="../category/misc.html">misc</a></li>
-                    <li><a href="../category/programming.html">programming</a></li>
-                    <li><a href="../category/vidya.html">vidya</a></li>
-                </ul>
-                </nav>
-        </header><!-- /#banner -->
+      <nav class="widget">
+        <h3>Catégories</h3>
+        <ul>
+          <li><a href="../category/misc.html">misc</a></li>
+          <li><a href="../category/programming.html">programming</a></li>
+          <li><a href="../category/vidya.html">vidya</a></li>
+        </ul>
+      </nav>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="../c11-tying-data-to-enums.html">C11: tying data to enums.</a></h1>
-<footer class="post-info">
-        <span>Mon 30 September 2019</span>
-<span>| tags: <a href="../tag/c.html">C</a><a href="../tag/programming.html">programming</a><a href="../tag/enums.html">enums</a><a href="../tag/macros.html">macros</a></span>
-</footer><!-- /.post-info --><div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>Let&#8217;s say you&#8217;re making a C library that deals with fruits.
-Fruits have many "attributes" that could be tied to them.
-They could have a size, a color, and a weight, for starters.</p>
-</div>
-<div class="paragraph">
-<p>When you&#8217;re adding a new fruit, you want to be sure to add these attributes too.
-So, like many people, you start to use <a href="https://stackoverflow.com/questions/6635851/real-world-use-of-x-macros">X macros</a>. After all, it&#8217;s a typical use.</p>
-</div>
-<div class="paragraph">
-<p>Your lib could look like this:</p>
-</div>
-<div class="listingblock">
-<div class="title">fruits.h</div>
-<div class="content">
-<pre class="highlight"><code class="language-c" data-lang="c"># pragma once
+    </aside> 
 
-#include &lt;inttypes.h&gt;
-
-typedef enum
-{
-    COLOR_GREEN,
-    COLOR_YELLOW,
-    COLOR_RED,
-} color_e;
-
-// enum, weight, size, color, name
-#define FRUIT_TABLE \
-    X(FRUITS_APPLE, 50, 10, COLOR_GREEN, "Apple") \
-    X(FRUITS_BANANA, 100, 20, COLOR_YELLOW, "Banana") \
-    X(FRUITS_STRAWBERRY, 10, 2, COLOR_RED, "Strawberry") \
-    X(FRUITS_PEACH, 45, 12, COLOR_RED, "Peach") \
-
-typedef enum
-{
-    #define X(enum, weight, size, color, name) enum,
-    FRUIT_TABLE
-    #undef X
-} fruits_e;
-
-uint32_t get_weight(fruits_e fruit);
-uint32_t get_size(fruits_e fruit);
-color_e  get_color(fruits_e fruit);
-const char*    get_name(fruits_e fruit);</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">fruits.c</div>
-<div class="content">
-<pre class="highlight"><code class="language-c" data-lang="c">#include "fruits.h"
-
-struct my_data_array_s
-{
-    fruits_e fruit;
-    uint32_t weight;
-    uint32_t size;
-    color_e color;
-    const char* name;
-} data_array[]=
-{
-    #define X(enum, weight, size, color, name) {enum, weight, size, color, name},
-    FRUIT_TABLE
-    #undef X
-};
-
-#define SIZE_data_array (sizeof(data_array)/sizeof(data_array[0]))</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Using X macros ensures that if you add a new fruit in the list, you have to add its attributes too.
-This then populates automatically the data_array with the new value and attributes, and you can&#8217;t forget to update this array.</p>
-</div>
-<div class="paragraph">
-<p>That&#8217;s the big pro of X macros. It allows you to define a bunch of information in a single place, and reuse it easily.</p>
-</div>
-<div class="paragraph">
-<p>In our case though, it has a big con. Namely, you&#8217;re breaking the first rule of implementation in interfaces:</p>
-</div>
-<div class="paragraph">
-<p><strong>You don&#8217;t talk about implementation in interfaces.</strong></p>
-</div>
-<div class="paragraph">
-<p>The data in data_array is strictly implementation detail. If data about the fruits where to be dynamically loaded (through a file, for example) at a later point,
-You still gave the opportunity to the user to use the details directly. And remember: the user will always do stupid shit with your interface. <em>Remember that you too are someone else&#8217;s user.</em></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_the_fix">The fix</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Considering the user&#8217;s behavior, you have no choice but to leave the minimum of information on your interface. Namely, the enum itself.</p>
-</div>
-<div class="listingblock">
-<div class="title">fruits.h</div>
-<div class="content">
-<pre class="highlight"><code class="language-c" data-lang="c"># pragma once
-
-#include &lt;inttypes.h&gt;
-
-typedef enum
-{
-    COLOR_GREEN,
-    COLOR_YELLOW,
-    COLOR_RED,
-} color_e;
-
-typedef enum
-{
-    FRUITS_APPLE,
-    FRUITS_BANANA,
-    FRUITS_STRAWBERRY,
-    FRUITS_PEACH,
-} fruits_e;
-
-uint32_t get_weight(fruits_e fruit);
-uint32_t get_size(fruits_e fruit);
-color_e  get_color(fruits_e fruit);
-const char*    get_name(fruits_e fruit);</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">fruits.c</div>
-<div class="content">
-<pre class="highlight"><code class="language-c" data-lang="c">#include "fruits.h"
-
-struct my_data_array_s
-{
-    fruits_e fruit;
-    uint32_t weight;
-    uint32_t size;
-    color_e color;
-    const char* name;
-} data_array[]=
-{
-    {FRUITS_APPLE, 50, 10, COLOR_GREEN, "Apple"},
-    {FRUITS_BANANA, 100, 20, COLOR_YELLOW, "Banana"},
-    {FRUITS_STRAWBERRY, 10, 2, COLOR_RED, "Strawberry"},
-    {FRUITS_PEACH, 45, 12, COLOR_RED, "Peach"},
-};
-
-#define SIZE_data_array (sizeof(data_array)/sizeof(data_array[0]))</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>But now, you don&#8217;t have this guarantee that you won&#8217;t forget to update data_array at compile time if you add a new enum value, like with the X macro.</p>
-</div>
-<div class="paragraph">
-<p>Luckily, you are working in a relatively modern environment. And you have access to C11. So you can actually enforce this.</p>
-</div>
-<div class="paragraph">
-<p>To make it short, you have to ensure at compile time that size of data_array is the same as the number of values in fruits_e.</p>
-</div>
-<div class="paragraph">
-<p>Let&#8217;s start by adding a "num value" value to our enum.</p>
-</div>
-<div class="listingblock">
-<div class="title">fruits.h</div>
-<div class="content">
-<pre class="highlight"><code class="language-c" data-lang="c">typedef enum
-{
-    FRUITS_APPLE,
-    FRUITS_BANANA,
-    FRUITS_STRAWBERRY,
-    FRUITS_PEACH,
-
-    FRUITS_NUM_VALUE, // keep last
-} fruits_e;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>And now, we just need to assert at compile time that <code>FRUITS_NUM_VALUE == SIZE_data_array</code>.</p>
-</div>
-<div class="paragraph">
-<p>C11 offers the <code>_Static_assert</code> keyword. Let&#8217;s try it.</p>
-</div>
-<div class="listingblock">
-<div class="title">fruits.c</div>
-<div class="content">
-<pre class="highlight"><code class="language-c" data-lang="c">struct my_data_array_s
-{
-    fruits_e fruit;
-    uint32_t weight;
-    uint32_t size;
-    color_e color;
-    const char* name;
-} data_array[]=
-{
-    {FRUITS_APPLE, 50, 10, COLOR_GREEN, "Apple"},
-    {FRUITS_BANANA, 100, 20, COLOR_YELLOW, "Banana"},
-    {FRUITS_STRAWBERRY, 10, 2, COLOR_RED, "Strawberry"},
-    {FRUITS_PEACH, 45, 12, COLOR_RED, "Peach"},
-};
-
-#define SIZE_data_array (sizeof(data_array)/sizeof(data_array[0]))
-
-_Static_assert(FRUITS_NUM_VALUE == SIZE_data_array, "Some data is missing in data_array.");</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Now, if i add a new value in my fruits_e enum&#8230;&#8203;</p>
-</div>
-<div class="listingblock">
-<div class="title">fruits.h</div>
-<div class="content">
-<pre class="highlight"><code class="language-c" data-lang="c">typedef enum
-{
-    FRUITS_APPLE,
-    FRUITS_BANANA,
-    FRUITS_STRAWBERRY,
-    FRUITS_PEACH,
-    FRUITS_PEAR,
-
-    FRUITS_NUM_VALUE, // keep last
-} fruits_e;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>It breaks at compile time.</p>
-</div>
-<div class="listingblock">
-<div class="title">error</div>
-<div class="content">
-<pre class="highlight"><code>../src/lib/fruits.c:20:1: error: static assertion failed: "Some data is missing in data_array."
- _Static_assert(FRUITS_NUM_VALUE == SIZE_data_array, "Some data is missing in data_array.");</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Thats nice! We now have the same verification at compile time than the X macro.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_but_wait_my_enum_has_skips">But wait, my enum has skips!</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This tricks only works if your enum starts from 0 and has no specific values or skips.
-FRUITS_NUM_VALUES would not actually be the size of the enum in this case, even if last.</p>
-</div>
-<div class="paragraph">
-<p>So what could we do if your enum actually looked like this?</p>
-</div>
-<div class="listingblock">
-<div class="title">fruits.h</div>
-<div class="content">
-<pre class="highlight"><code class="language-c" data-lang="c">typedef enum
-{
-    FRUITS_APPLE = 10,
-    FRUITS_BANANA= 20,
-    FRUITS_STRAWBERRY = 30,
-    FRUITS_PEACH = 40,
-} fruits_e;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>It&#8217;s easy. We&#8217;re gonna go back to X macros!</p>
-</div>
-<div class="paragraph">
-<p>They will allow us to define the enum the way we want, and to <a href="https://stackoverflow.com/a/25354018/11561171">count the number of elements in our enum</a> at the same time.</p>
-</div>
-<div class="listingblock">
-<div class="title">fruits.h</div>
-<div class="content">
-<pre class="highlight"><code class="language-c" data-lang="c">#define FRUIT_TABLE \
-    X(FRUITS_APPLE, 10) \
-    X(FRUITS_BANANA, 20) \
-    X(FRUITS_STRAWBERRY, 30) \
-    X(FRUITS_PEACH, 40)
-
-typedef enum
-{
-#define X(enum, value) enum = value,
-    FRUIT_TABLE
-#undef X
-} fruits_e;</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">fruits.c</div>
-<div class="content">
-<pre class="highlight"><code class="language-c" data-lang="c">struct my_data_array_s
-{
-    fruits_e fruit;
-    uint32_t weight;
-    uint32_t size;
-    color_e color;
-    const char* name;
-} data_array[]=
-{
-    {FRUITS_APPLE, 50, 10, COLOR_GREEN, "Apple"},
-    {FRUITS_BANANA, 100, 20, COLOR_YELLOW, "Banana"},
-    {FRUITS_STRAWBERRY, 10, 2, COLOR_RED, "Strawberry"},
-    {FRUITS_PEACH, 45, 12, COLOR_RED, "Peach"},
-};
-
-#define SIZE_data_array (sizeof(data_array)/sizeof(data_array[0]))
-
-#define X(enum, value) + 1
-// This will expand to "+ 1" for each entry in FRUIT_TABLE.
-#define FRUITS_NUM_VALUE (0 FRUIT_TABLE)
-_Static_assert(FRUITS_NUM_VALUE == SIZE_data_array, "Some data is missing in data_array.");
-#undef X</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Sadly, because of how the preprocessor works, we can&#8217;t define FRUITS_NUM_VALUE in our interface.
-But it&#8217;s not a big deal, because we now have access to this enum through a X macro, which allow us to make this kind of stuff.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_in_the_end_were_back_to_x_macros">In the end, we&#8217;re back to X macros.</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>X macros are powerful tools, but you should be careful not to expose any detail of your implementation
-if you are using them in a header. With C11, you have the possibility to have the same level of compile-time check
-using <code>_Static_assert</code>, making them much more interesting to use directly.</p>
-</div>
-<div class="paragraph">
-<p>If you&#8217;re not using them in any interface though, you&#8217;re free to do it the way you want. Just be careful from the evil users.</p>
-</div>
-</div>
-</div>
-                </article>
-            </aside><!-- /#featured -->
-            </ol><!-- /#posts-list -->
-            </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <p>Powered by <a href="http://getpelican.com/">Pelican</a>. Theme <a href="https://github.com/blueicefield/pelican-blueidea/">blueidea</a>, inspired by the default theme.</p>
-        </footer><!-- /#contentinfo -->
-
-</body>
+      <footer class="page-footer">
+        <p> Powered by <a href="http://pelican.readthedocs.org">Pelican</a></p>
+      </footer>
+    </div>
+  </body>
 </html>
