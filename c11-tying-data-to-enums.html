@@ -49,7 +49,7 @@ So, like many people, you start to use <a href="https://stackoverflow.com/questi
 <div class="listingblock">
 <div class="title">fruits.h</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="c"># pragma once
+<pre class="highlight"><code class="language-c" data-lang="c"># pragma once
 
 #include &lt;inttypes.h&gt;
 
@@ -83,7 +83,7 @@ const char*    get_name(fruits_e fruit);</code></pre>
 <div class="listingblock">
 <div class="title">fruits.c</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="c">#include "fruits.h"
+<pre class="highlight"><code class="language-c" data-lang="c">#include "fruits.h"
 
 struct my_data_array_s
 {
@@ -130,7 +130,7 @@ You still gave the opportunity to the user to use the details directly. And reme
 <div class="listingblock">
 <div class="title">fruits.h</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="c"># pragma once
+<pre class="highlight"><code class="language-c" data-lang="c"># pragma once
 
 #include &lt;inttypes.h&gt;
 
@@ -158,7 +158,7 @@ const char*    get_name(fruits_e fruit);</code></pre>
 <div class="listingblock">
 <div class="title">fruits.c</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="c">#include "fruits.h"
+<pre class="highlight"><code class="language-c" data-lang="c">#include "fruits.h"
 
 struct my_data_array_s
 {
@@ -193,7 +193,7 @@ struct my_data_array_s
 <div class="listingblock">
 <div class="title">fruits.h</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="c">typedef enum
+<pre class="highlight"><code class="language-c" data-lang="c">typedef enum
 {
     FRUITS_APPLE,
     FRUITS_BANANA,
@@ -213,7 +213,7 @@ struct my_data_array_s
 <div class="listingblock">
 <div class="title">fruits.c</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="c">struct my_data_array_s
+<pre class="highlight"><code class="language-c" data-lang="c">struct my_data_array_s
 {
     fruits_e fruit;
     uint32_t weight;
@@ -239,7 +239,7 @@ _Static_assert(FRUITS_NUM_VALUE == SIZE_data_array, "Some data is missing in dat
 <div class="listingblock">
 <div class="title">fruits.h</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="c">typedef enum
+<pre class="highlight"><code class="language-c" data-lang="c">typedef enum
 {
     FRUITS_APPLE,
     FRUITS_BANANA,
@@ -257,7 +257,7 @@ _Static_assert(FRUITS_NUM_VALUE == SIZE_data_array, "Some data is missing in dat
 <div class="listingblock">
 <div class="title">error</div>
 <div class="content">
-<pre class="pygments highlight"><code>../src/lib/fruits.c:20:1: error: static assertion failed: "Some data is missing in data_array."
+<pre class="highlight"><code>../src/lib/fruits.c:20:1: error: static assertion failed: "Some data is missing in data_array."
  _Static_assert(FRUITS_NUM_VALUE == SIZE_data_array, "Some data is missing in data_array.");</code></pre>
 </div>
 </div>
@@ -279,7 +279,7 @@ FRUITS_NUM_VALUES would not actually be the size of the enum in this case, even 
 <div class="listingblock">
 <div class="title">fruits.h</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="c">typedef enum
+<pre class="highlight"><code class="language-c" data-lang="c">typedef enum
 {
     FRUITS_APPLE = 10,
     FRUITS_BANANA= 20,
@@ -297,7 +297,7 @@ FRUITS_NUM_VALUES would not actually be the size of the enum in this case, even 
 <div class="listingblock">
 <div class="title">fruits.h</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="c">#define FRUIT_TABLE \
+<pre class="highlight"><code class="language-c" data-lang="c">#define FRUIT_TABLE \
     X(FRUITS_APPLE, 10) \
     X(FRUITS_BANANA, 20) \
     X(FRUITS_STRAWBERRY, 30) \
@@ -314,7 +314,7 @@ typedef enum
 <div class="listingblock">
 <div class="title">fruits.c</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="c">struct my_data_array_s
+<pre class="highlight"><code class="language-c" data-lang="c">struct my_data_array_s
 {
     fruits_e fruit;
     uint32_t weight;
